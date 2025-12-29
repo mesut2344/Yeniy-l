@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+
+
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yeni Yılımız 🤍</title>
-
 
 <style>
 body{
@@ -12,48 +13,37 @@ body{
  font-family:Arial, Helvetica, sans-serif;
  color:white;
  text-align:center;
- background:
- linear-gradient(rgba(255,182,193,0.85), rgba(11,29,58,0.95)),
- url("https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1600&q=80");
- background-size:cover;
- background-attachment:fixed;
+ background:linear-gradient(135deg,#ffb6c1,#0b1d3a,#1a2a6c);
+ background-size:400% 400%;
+ animation:bgMove 12s ease infinite;
  overflow-x:hidden;
 }
 
+@keyframes bgMove{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
 
-/* BAŞLIKLAR */
 h1{margin-top:80px;font-size:2.2em}
 
-
-/* AÇILIŞ YAZISI ANİMASYONU */
 .welcome{
- font-weight:400;
  opacity:0;
  transform:translateY(-30px);
- animation:
-   welcomeAnim 2.8s ease forwards,
-   glow 2s infinite alternate;
+ animation:welcomeAnim 2.5s ease forwards,
+          glow 2s infinite alternate;
 }
-
 
 @keyframes welcomeAnim{
- to{
-  opacity:1;
-  transform:translateY(0);
- }
+ to{opacity:1;transform:translateY(0)}
 }
-
-
 @keyframes glow{
- from{text-shadow:0 0 5px #fff;}
- to{text-shadow:0 0 20px #ffb6c1;}
+ from{text-shadow:0 0 5px #fff}
+ to{text-shadow:0 0 20px #ffb6c1}
 }
-
 
 #countdown{font-size:2em;margin:20px}
 
-
-/* KARTLAR */
 .cards{
  display:flex;
  flex-wrap:wrap;
@@ -62,13 +52,11 @@ h1{margin-top:80px;font-size:2.2em}
  margin:40px 0;
 }
 
-
 .card{
  width:160px;
  height:230px;
  perspective:1000px;
 }
-
 
 .card-inner{
  width:100%;
@@ -77,11 +65,9 @@ h1{margin-top:80px;font-size:2.2em}
  transform-style:preserve-3d;
 }
 
-
 .card:hover .card-inner{
  transform:rotateY(180deg);
 }
-
 
 .card-front,.card-back{
  position:absolute;
@@ -94,30 +80,25 @@ h1{margin-top:80px;font-size:2.2em}
  align-items:center;
  justify-content:center;
  padding:15px;
+ font-size:1.1em;
 }
-
 
 .card-front{
- background:rgba(255,105,180,0.9);
+ font-size:3em;
 }
 
-
-.card-front img{
- width:90px;
- height:90px;
- border-radius:50%;
- border:3px solid white;
- margin-bottom:10px;
-}
-
+.joy{background:#ffd93d;color:#5a3d00}
+.sad{background:#5dade2}
+.anger{background:#e74c3c}
+.fear{background:#8e44ad}
+.disgust{background:#2ecc71}
 
 .card-back{
  background:rgba(11,29,58,0.95);
  transform:rotateY(180deg);
+ font-size:1em;
 }
 
-
-/* KAR */
 .snow{
  position:fixed;
  top:-10px;
@@ -125,110 +106,4 @@ h1{margin-top:80px;font-size:2.2em}
  animation:fall linear infinite;
 }
 
-
-@keyframes fall{
- to{transform:translateY(110vh)}
-}
-</style>
-</head>
-
-
-<body>
-
-
-<h1>🎄 Yeni Yılımız Kutlu Olsun 🎄</h1>
-<h2 class="welcome">Hoş geldin ömür törpüm 🤍</h2>
-
-
-<div id="countdown"></div>
-
-
-<div class="cards">
-
-
-<div class="card"><div class="card-inner">
-<div class="card-front">
-<img src="https://upload.wikimedia.org/wikipedia/en/5/55/Joy_Inside_Out.png">
-Neşe
-</div>
-<div class="card-back">Gülüşün yeni yılımın en güzel hediyesi ✨</div>
-</div></div>
-
-
-<div class="card"><div class="card-inner">
-<div class="card-front">
-<img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Sadness_Inside_Out.png">
-Üzüntü
-</div>
-<div class="card-back">Üzgün olduğunda bile yanındayım 🤍</div>
-</div></div>
-
-
-<div class="card"><div class="card-inner">
-<div class="card-front">
-<img src="https://upload.wikimedia.org/wikipedia/en/f/f4/Anger_Inside_Out.png">
-Öfke
-</div>
-<div class="card-back">Kızsan da seni sevmekten vazgeçmem 😌</div>
-</div></div>
-
-
-<div class="card"><div class="card-inner">
-<div class="card-front">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3a/Fear_Inside_Out.png">
-Korku
-</div>
-<div class="card-back">Korktuğunda elimi tut yeter 🤝</div>
-</div></div>
-
-
-<div class="card"><div class="card-inner">
-<div class="card-front">
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/Disgust_Inside_Out.png">
-Tiksinti
-</div>
-<div class="card-back">Her halin bana güzel 💕</div>
-</div></div>
-
-
-</div>
-
-
-<audio id="music" autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/11/22/audio_5c30b87c4c.mp3">
-</audio>
-
-
-<script>
-const music=document.getElementById("music");
-music.volume=0.4;
-
-
-/* KAR YAĞIŞI */
-function snow(){
- const s=document.createElement("div");
- s.className="snow";
- s.style.left=Math.random()*window.innerWidth+"px";
- s.style.animationDuration=(Math.random()*3+2)+"s";
- s.innerHTML="❄️";
- document.body.appendChild(s);
- setTimeout(()=>s.remove(),5000);
-}
-setInterval(snow,200);
-
-
-/* GERİ SAYIM */
-const cd=document.getElementById("countdown");
-setInterval(()=>{
- const now=new Date();
- const mid=new Date();
- mid.setHours(24,0,0,0);
- const d=Math.floor((mid-now)/1000);
- if(d>0 && d<=10) cd.innerHTML="💖 "+d+" 💖";
- if(d===0) cd.innerHTML="🎆 MUTLU YILLAR 🎆";
-},1000);
-</script>
-
-
-</body>
-</html>
+@
