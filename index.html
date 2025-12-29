@@ -3,49 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEST</title>
+<title>🤍</title>
 
 <style>
 body{
   margin:0;
   height:100vh;
-  background:linear-gradient(135deg, #ff5fa2, #1e3c72);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  background:linear-gradient(135deg,#ff77a9,#1e3c72);
   font-family:Arial;
   color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+h1{
+  margin-top:30px;
+  animation:fade 2s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 .cards{
   display:flex;
+  justify-content:center;
   gap:15px;
-  margin-top:20px;
+  margin-top:40px;
+  flex-wrap:wrap;
 }
 
 .card{
-  width:80px;
-  height:120px;
-  background:rgba(255,255,255,0.3);
-  border-radius:15px;
+  width:90px;
+  height:130px;
+  background:rgba(255,255,255,0.25);
+  border-radius:16px;
+  font-size:40px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:40px;
+  cursor:pointer;
+}
+
+/* popup */
+#popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+#box{
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:18px;
+  max-width:260px;
+  position:relative;
+}
+
+/* kalp */
+.heart{
+  position:absolute;
+  animation:fly 1.5s ease forwards;
+}
+
+@keyframes fly{
+  to{transform:translate(var(--x),var(--y));opacity:0}
 }
 </style>
 </head>
 
 <body>
 
-<h1>BURAYI GÖRÜYORSAN ÇALIŞIYOR</h1>
+<h1>💖 Nice beraber yıllara ömür törpüm 🤍</h1>
 
 <div class="cards">
-  <div class="card">💖</div>
-  <div class="card">💙</div>
-  <div class="card">🎄</div>
+  <div class="card" onclick="openMsg('Gülüşüne ömrümü veririm.')">😀</div>
+  <div class="card" onclick="openMsg('Üzüldüğünde bile kalbim sana daha çok bağlanıyor.')">😢</div>
+  <div class="card" onclick="openMsg('Kızınca bile çok tatlı oluyorsun.')">😡</div>
+  <div class="card" onclick="openMsg('En güvenli yerin her zaman benim yanım.')">😨</div>
+  <div class="card" onclick="openMsg('Her halinde gözlerin çok güzel.')">😒</div>
 </div>
+
+<div id="popup" onclick="closeMsg()">
+  <div id="box"></div>
+</div>
+
+<script>
+function openMsg(text){
+  const p=document.getElementById("popup");
+  const b=document.getElementById("box");
+  b.innerText=text;
+  p.style.display="flex";
+  hearts(b);
+}
+
+function closeMsg(){
+  document.getElementById("popup").style.display="none";
+}
+
+function hearts(el){
+  for(let i=0;i<12;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left="50%";
+    h.style.top="50%";
+    h.style.setProperty("--x",(Math.random()*200-100)+"px");
+    h.style.setProperty("--y",(Math.random()*200-150)+"px");
+    el.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
+  }
+}
+</script>
 
 </body>
 </html>
