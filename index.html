@@ -3,165 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yeni Yılımız 🤍</title>
+<title>💙</title>
 
 <style>
-body{
+html,body{
   margin:0;
-  min-height:100vh;
-  font-family:Arial, Helvetica, sans-serif;
-  color:white;
+  padding:0;
+  height:100%;
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+}
+
+/* GERÇEK ARKA PLAN (gömülü görsel) */
+body{
+  background:
+    linear-gradient(rgba(10,10,30,.55),rgba(10,10,30,.55)),
+    url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...") center/cover no-repeat;
+}
+
+/* Açılış yazısı */
+#welcome{
+  position:absolute;
+  top:20%;
+  width:100%;
   text-align:center;
-
-  /* NET VE GÖRÜNÜR ARKA PLAN DESENİ */
-  background-color:#0b1d3a;
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(255,182,193,0.35) 0 40px, transparent 41px),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.25) 0 25px, transparent 26px),
-    radial-gradient(circle at 50% 70%, rgba(255,182,193,0.3) 0 35px, transparent 36px),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.05) 0,
-      rgba(255,255,255,0.05) 10px,
-      transparent 10px,
-      transparent 20px
-    );
+  color:#fff;
+  font-size:28px;
+  animation:fadeIn 3s ease forwards;
+  z-index:3;
 }
 
-h1{
-  margin-top:60px;
-  font-size:2.2em;
-}
-
-.welcome{
-  opacity:0;
-  transform:translateY(-30px);
-  animation:welcomeAnim 2.5s ease forwards, glow 2s infinite alternate;
-}
-
-@keyframes welcomeAnim{
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
-@keyframes glow{
-  from{text-shadow:0 0 5px #fff}
-  to{text-shadow:0 0 20px #ffb6c1}
-}
-
-/* Kartlar */
-.cards{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  margin:40px 0 80px;
-}
-
-.card{
-  width:160px;
-  height:220px;
-  perspective:1000px;
-}
-
-.card-inner{
-  width:100%;
-  height:100%;
-  transition:0.8s;
-  transform-style:preserve-3d;
-}
-
-.card:hover .card-inner{
-  transform:rotateY(180deg);
-}
-
-.card-front,.card-back{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  box-sizing:border-box;
-}
-
-.card-front{
-  font-size:3em;
-}
-
-.card-back{
-  background:rgba(11,29,58,0.95);
-  transform:rotateY(180deg);
-  font-size:1em;
-}
-
-/* Ters Yüz renkleri */
-.joy{background:#ffd93d;color:#5a3d00}
-.sad{background:#5dade2}
-.anger{background:#e74c3c}
-.fear{background:#8e44ad}
-.disgust{background:#2ecc71}
 
 /* Kar */
 .snow{
   position:fixed;
   top:-10px;
+  color:white;
   font-size:18px;
   animation:fall linear infinite;
-  pointer-events:none;
 }
 
 @keyframes fall{
   to{transform:translateY(110vh)}
+}
+
+/* Konfeti */
+.confetti{
+  position:fixed;
+  font-size:22px;
+  animation:fall 3s linear;
+  z-index:4;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎄 Yeni Yılımız Kutlu Olsun 🎄</h1>
-<h2 class="welcome">Nice beraber yıllara ömür törpüm 🤍</h2>
-
-<div class="cards">
-
-  <div class="card"><div class="card-inner">
-    <div class="card-front joy">😊</div>
-    <div class="card-back">Gülüşün yeni yılımın en güzel hediyesi ✨</div>
-  </div></div>
-
-  <div class="card"><div class="card-inner">
-    <div class="card-front sad">😢</div>
-    <div class="card-back">Üzülürsen sarılmak bana düşer 🤍</div>
-  </div></div>
-
-  <div class="card"><div class="card-inner">
-    <div class="card-front anger">😡</div>
-    <div class="card-back">Sinirlensen bile seni sevmekten vazgeçmem</div>
-  </div></div>
-
-  <div class="card"><div class="card-inner">
-    <div class="card-front fear">😱</div>
-    <div class="card-back">Korktuğunda elini ben tutarım</div>
-  </div></div>
-
-  <div class="card"><div class="card-inner">
-    <div class="card-front disgust">🤢</div>
-    <div class="card-back">Her halinle benim için özelsin 💖</div>
-  </div></div>
-
+<div id="welcome">
+  💖 Nice beraber yıllara ömür törpüm 🤍
 </div>
 
 <script>
-// Kar efekti
-for(let i=0;i<40;i++){
+// KAR
+for(let i=0;i<50;i++){
   const s=document.createElement("div");
   s.className="snow";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=3+Math.random()*5+"s";
+  s.style.animationDuration=5+Math.random()*5+"s";
   s.innerHTML="❄️";
   document.body.appendChild(s);
 }
+
+// KONFETİ
+function confetti(){
+  const arr=["🎉","✨","💖","🎆","💙"];
+  for(let i=0;i<150;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.innerHTML=arr[Math.floor(Math.random()*arr.length)];
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+
+// 00:00 TETİK
+setInterval(()=>{
+  const n=new Date();
+  if(n.getHours()===0 && n.getMinutes()===0 && n.getSeconds()===0){
+    confetti();
+  }
+},1000);
 </script>
 
 </body>
