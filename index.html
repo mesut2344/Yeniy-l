@@ -3,189 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🤍</title>
+<title>TEST</title>
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  font-family:'Segoe UI',sans-serif;
-  overflow:hidden;
-}
-
-/* ARKA PLAN */
 body{
-  background:
-    linear-gradient(rgba(15,15,40,.65),rgba(15,15,40,.65)),
-    url("https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1500&q=80")
-    center/cover no-repeat;
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg, #ff5fa2, #1e3c72);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial;
+  color:white;
 }
 
-/* AÇILIŞ YAZISI */
-#welcome{
-  margin-top:45px;
-  text-align:center;
-  color:#fff;
-  font-size:28px;
-  animation:fade 3s ease forwards;
-}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* KARTLAR */
 .cards{
   display:flex;
-  justify-content:center;
-  gap:12px;
-  margin-top:35px;
-  flex-wrap:wrap;
+  gap:15px;
+  margin-top:20px;
 }
 
 .card{
-  width:115px;
-  height:155px;
-  border-radius:18px;
-  background:rgba(255,255,255,.18);
-  backdrop-filter:blur(8px);
+  width:80px;
+  height:120px;
+  background:rgba(255,255,255,0.3);
+  border-radius:15px;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 8px 20px rgba(0,0,0,.35);
-  cursor:pointer;
-}
-
-.card img{
-  width:80px;
-}
-
-/* POPUP */
-#popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:10;
-}
-
-#popupBox{
-  background:#fff;
-  padding:25px;
-  border-radius:20px;
-  max-width:280px;
-  text-align:center;
-  font-size:16px;
-  position:relative;
-  animation:pop .3s ease;
-}
-
-@keyframes pop{
-  from{transform:scale(.8);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-
-/* KALPLER */
-.heart{
-  position:absolute;
-  font-size:18px;
-  animation:heartFly 1.5s ease-out forwards;
-}
-
-@keyframes heartFly{
-  from{opacity:1;transform:translate(0,0) scale(1)}
-  to{opacity:0;transform:translate(var(--x),var(--y)) scale(.3)}
-}
-
-/* KAR */
-.snow{
-  position:fixed;
-  top:-10px;
-  font-size:18px;
-  animation:fall linear infinite;
-}
-
-@keyframes fall{
-  to{transform:translateY(110vh)}
+  font-size:40px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="welcome">
-  💖 Nice beraber yıllara ömür törpüm 🤍
-</div>
+<h1>BURAYI GÖRÜYORSAN ÇALIŞIYOR</h1>
 
 <div class="cards">
-  <div class="card" onclick="openMsg('Gülüşüne ömrümü veririm.')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/0a/Joy_%28Inside_Out%29.png">
-  </div>
-
-  <div class="card" onclick="openMsg('Üzüldüğünde bile kalbim sana daha çok bağlanıyor.')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Sadness_%28Inside_Out%29.png">
-  </div>
-
-  <div class="card" onclick="openMsg('Kızınca bile çok tatlı oluyorsun.')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/f/f6/Anger_%28Inside_Out%29.png">
-  </div>
-
-  <div class="card" onclick="openMsg('En güvenli yerin her zaman benim yanım.')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/6/68/Fear_%28Inside_Out%29.png">
-  </div>
-
-  <div class="card" onclick="openMsg('Her halinde gözlerin çok güzel.')">
-    <img src="https://upload.wikimedia.org/wikipedia/en/1/15/Disgust_%28Inside_Out%29.png">
-  </div>
+  <div class="card">💖</div>
+  <div class="card">💙</div>
+  <div class="card">🎄</div>
 </div>
-
-<!-- POPUP -->
-<div id="popup" onclick="closeMsg()">
-  <div id="popupBox"></div>
-</div>
-
-<script>
-function openMsg(text){
-  const popup=document.getElementById("popup");
-  const box=document.getElementById("popupBox");
-  box.innerText=text;
-  popup.style.display="flex";
-  hearts(box);
-}
-
-function closeMsg(){
-  document.getElementById("popup").style.display="none";
-}
-
-/* KALP PATLAMASI */
-function hearts(container){
-  for(let i=0;i<18;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerText="💖";
-    h.style.left="50%";
-    h.style.top="50%";
-    h.style.setProperty("--x",(Math.random()*200-100)+"px");
-    h.style.setProperty("--y",(Math.random()*200-150)+"px");
-    container.appendChild(h);
-    setTimeout(()=>h.remove(),1500);
-  }
-}
-
-/* KAR */
-for(let i=0;i<45;i++){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=5+Math.random()*5+"s";
-  s.innerHTML="❄️";
-  document.body.appendChild(s);
-}
-</script>
 
 </body>
 </html>
