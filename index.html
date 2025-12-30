@@ -3,122 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🤍</title>
+<title>Ömür Törpüm 🤍</title>
 
 <style>
-body{
-  margin:0;
-  height:100vh;
-  background:linear-gradient(135deg,#ff77a9,#1e3c72);
-  font-family:Arial;
-  color:white;
-  overflow:hidden;
-  text-align:center;
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0b0f2b, #1b2a4e);
+  overflow: hidden;
+  color: white;
+  text-align: center;
 }
 
-h1{
-  margin-top:30px;
-  animation:fade 2s ease;
+h1 {
+  margin-top: 30px;
+  font-size: 28px;
+  animation: fade 2s ease-in-out infinite alternate;
 }
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+@keyframes fade {
+  from {opacity: 0.6;}
+  to {opacity: 1;}
 }
 
-.cards{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:40px;
-  flex-wrap:wrap;
+/* Kar */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  animation: fall linear infinite;
 }
 
-.card{
-  width:90px;
-  height:130px;
-  background:rgba(255,255,255,0.25);
-  border-radius:16px;
-  font-size:40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
+@keyframes fall {
+  to {transform: translateY(110vh);}
 }
 
-/* popup */
-#popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
+/* Kartlar */
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 50px;
 }
 
-#box{
-  background:white;
-  color:black;
-  padding:20px;
-  border-radius:18px;
-  max-width:260px;
-  position:relative;
+.card {
+  width: 100px;
+  height: 140px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* kalp */
-.heart{
-  position:absolute;
-  animation:fly 1.5s ease forwards;
+.card:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.3);
 }
 
-@keyframes fly{
-  to{transform:translate(var(--x),var(--y));opacity:0}
+/* Mesaj */
+#message {
+  margin-top: 30px;
+  font-size: 18px;
+  min-height: 50px;
+}
+
+/* Kalp */
+.heart {
+  position: fixed;
+  color: pink;
+  font-size: 20px;
+  animation: heart 2s linear;
+}
+
+@keyframes heart {
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<h1>💖 Nice beraber yıllara ömür törpüm 🤍</h1>
+<h1>✨ Nice beraber yıllara ömür törpüm 🤍 ✨</h1>
 
 <div class="cards">
-  <div class="card" onclick="openMsg('Gülüşüne ömrümü veririm.')">😀</div>
-  <div class="card" onclick="openMsg('Üzüldüğünde bile kalbim sana daha çok bağlanıyor.')">😢</div>
-  <div class="card" onclick="openMsg('Kızınca bile çok tatlı oluyorsun.')">😡</div>
-  <div class="card" onclick="openMsg('En güvenli yerin her zaman benim yanım.')">😨</div>
-  <div class="card" onclick="openMsg('Her halinde gözlerin çok güzel.')">😒</div>
+  <div class="card" onclick="showMsg('Neşede gülüşüne ömrümü veririm 😊')">😄</div>
+  <div class="card" onclick="showMsg('Üzüntüde kalbim seninle 💔')">😢</div>
+  <div class="card" onclick="showMsg('Kızınca bile çok tatlısın 😠')">😡</div>
+  <div class="card" onclick="showMsg('En güvenli yerim senin yanın 😨')">😱</div>
+  <div class="card" onclick="showMsg('Her halinde gözlerin çok güzel 🤢')">🤢</div>
 </div>
 
-<div id="popup" onclick="closeMsg()">
-  <div id="box"></div>
-</div>
+<div id="message"></div>
 
 <script>
-function openMsg(text){
-  const p=document.getElementById("popup");
-  const b=document.getElementById("box");
-  b.innerText=text;
-  p.style.display="flex";
-  hearts(b);
-}
-
-function closeMsg(){
-  document.getElementById("popup").style.display="none";
-}
-
-function hearts(el){
-  for(let i=0;i<12;i++){
-    const h=document.createElement("div");
+function showMsg(text) {
+  document.getElementById("message").innerText = text;
+  for(let i=0;i<20;i++){
+    let h=document.createElement("div");
+    h.innerHTML="💖";
     h.className="heart";
-    h.innerText="💖";
-    h.style.left="50%";
-    h.style.top="50%";
-    h.style.setProperty("--x",(Math.random()*200-100)+"px");
-    h.style.setProperty("--y",(Math.random()*200-150)+"px");
-    el.appendChild(h);
-    setTimeout(()=>h.remove(),1500);
+    h.style.left=Math.random()*100+"vw";
+    h.style.bottom="0px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
   }
 }
+
+// Kar oluştur
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.fontSize=(10+Math.random()*20)+"px";
+  s.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},200);
 </script>
 
 </body>
